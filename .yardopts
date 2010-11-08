@@ -1,0 +1,7 @@
+--no-private
+--protected
+--tag format:"Supported formats"
+--tag key:"Requires API key"
+--markup markdown
+-
+LICENSE.mkd

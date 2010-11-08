@@ -12,7 +12,7 @@ Installation
 
 Documentation
 -------------
-<http://rdoc.info/gems/open311>
+<http://rdoc.info/github/cfalabs/open311/master/frames>
 
 Usage Examples
 --------------

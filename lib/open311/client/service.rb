@@ -3,7 +3,6 @@ module Open311
     module Service
       # Provide a list of acceptable 311 service request types and their associated service codes
       #
-      # @todo Overload the method to allow fetching of the authenticated user's screen name from configurati
       # @format :xml
       # @key false
       # @param options [Hash] A customizable set of options.

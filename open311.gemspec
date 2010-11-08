@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.authors = ["Dan Melton", "Erik Michaels-Ober"]
   s.description = %q{A Ruby wrapper for the Open311 API v2.}
   s.post_install_message =<<eos
-Using this gem for your project or company? Add it to the apps wiki!
+Using this gem in your project or organization? Add it to the apps wiki!
 https://github.com/cfalabs/open311/wiki/apps
 eos
   s.email = ["dan@codeforamerica.org"]

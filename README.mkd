@@ -2,7 +2,7 @@ Open311
 =======
 A Ruby wrapper for the Open311 API v2.
 
-Does your project or company use this gem?
+Does your project or organization use this gem?
 ------------------------------------------
 Add it to the [apps](http://github.com/cfalabs/open311/wiki/apps) wiki!
 
@@ -20,8 +20,8 @@ Usage Examples
     
     # Certain methods require an API key
     Open311.configure do |config|
-      config.api_key      = YOUR_API_KEY
       config.endpoint     = 'https://open311.sfgov.org/'
+      config.format       = 'xml'
       config.jurisdiction = 'sfgov.org'
     end
     

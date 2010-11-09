@@ -1,5 +1,6 @@
 require File.expand_path('../../lib/open311', __FILE__)
 
+require 'rspec'
 require 'webmock/rspec'
 RSpec.configure do |config|
   config.include WebMock::API

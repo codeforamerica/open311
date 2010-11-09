@@ -15,12 +15,17 @@ module Open311
           :url => endpoint
         }
 
-        Faraday::Connection.new(options) do |builder|
-          builder.use Faraday::Request::Multipart
-          builder.adapter(adapter)
-          builder.use Faraday::Response::RaiseError
-          builder.use Faraday::Response::Parse unless raw
-          builder.use Faraday::Response::Mashify unless raw
+        Faraday::Connection.new(options) do |connection|
+          connection.use Faraday::Request::Multipart
+          connection.adapter(adapter)
+          connection.use Faraday::Response::RaiseError
+          unless raw
+            case format.to_s.downcase
+            when 'json' then connection.use Faraday::Response::ParseJson
+            when 'xml' then connection.use Faraday::Response::ParseXml
+            end
+            connection.use Faraday::Response::Mashify
+          end
         end
       end
     end

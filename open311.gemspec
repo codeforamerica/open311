@@ -2,6 +2,7 @@
 require File.expand_path("../lib/open311/version", __FILE__)
 
 Gem::Specification.new do |s|
+  s.add_development_dependency("bluecloth", "~> 2.0")
   s.add_development_dependency("bundler", "~> 1.0")
   s.add_development_dependency("libxml-ruby", "~> 1.1")
   s.add_development_dependency("rake", "~> 0.8")

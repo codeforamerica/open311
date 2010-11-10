@@ -1,3 +1,9 @@
+require 'simplecov'
+SimpleCov.start do
+  add_group 'Open311', 'lib/open311'
+  add_group 'Faraday', 'lib/faraday'
+end
+
 require File.expand_path('../../lib/open311', __FILE__)
 
 require 'rspec'

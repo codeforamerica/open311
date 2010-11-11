@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service_definition>
+	<service_code>DMV66</service_code>	
+	<attribute>
+		<variable>true</variable>
+		<code>WHISHETN</code>
+		<datatype>singlevaluelist</datatype>
+		<required>true</required>
+		<datatype_description></datatype_description>		
+		<order>1</order>	
+		<description>What is the ticket/tag/DL number?</description>
+		<values>
+		    <value>
+			 	<key>123</key>
+				<name>Ford</name>
+			</value>
+		    <value>
+			 	<key>124</key>
+				<name>Chrysler</name>
+			</value>			
+		</values>
+	</attribute>	
+</service_definition>

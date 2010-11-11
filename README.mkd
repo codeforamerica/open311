@@ -27,6 +27,9 @@ Usage Examples
     
     # Provide a list of acceptable 311 service request types and their associated service codes
     Open311.service_list
+    
+    # If meta data is available, provide attributes and definition for the service code
+    Open311.service_definition('033')
 
 Contributing
 ------------

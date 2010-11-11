@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    open311 (0.0.1)
+    open311 (0.0.2)
       faraday (~> 0.5.3)
       faraday_middleware (~> 0.3.0)
       hashie (~> 0.4.0)

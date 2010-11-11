@@ -17,8 +17,9 @@ module Open311
       end
 
       # @format :xml
-      # @key id
-      # @param options [Hashie] A customizable set of options.
+      # @key false
+      # @param id String the service code 
+      # @param options [Hash] A customizable set of options.
       # @return Hash
       # @see http://wiki.open311.org/GeoReport_v2#GET_Service_Definition
       # @example define attributes associated with a service code, i.e. 033

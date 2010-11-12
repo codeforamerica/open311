@@ -114,7 +114,7 @@ describe Open311, ".get_service_request" do
   end
 end
 
-describe Open311, ".service_request" do
+describe Open311, ".post_service_request" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
@@ -142,7 +142,7 @@ describe Open311, ".service_request" do
   end
     
   it "should return the correct results" do
-    service_request_response = Open311.service_request(@service_request_params)
+    service_request_response = Open311.post_service_request(@service_request_params)
     service_request_response.service_request_id.should == '293944'
   end
 end

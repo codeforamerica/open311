@@ -25,6 +25,7 @@ module Open311
             when 'xml' then connection.use Faraday::Response::ParseXml
             end
             connection.use Faraday::Response::Mashify
+            #connection.use Faraday::Response::ConvertValues
           end
         end
       end

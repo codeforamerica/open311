@@ -64,7 +64,7 @@ module Open311
       def get_service_request(id, options={})
         options.merge!(:jurisdiction_id => jurisdiction, :lat => lat, :long => long)
         response = get("requests/#{id}", options)
-        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response
+        format.to_s.downcase == 'xml' ? ServiceRequest.new(response.service_requests.request.first) : response
       end
 
       # @format :xml
@@ -77,7 +77,7 @@ module Open311
       def request_id(token_id, options = {})
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("tokens/#{token_id}", options)
-        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response
+        format.to_s.downcase == 'xml' ? ServiceRequest.new(response.service_requests.request) : response
       end
     end
   end

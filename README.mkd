@@ -35,6 +35,9 @@ Usage Examples
     
     # Grab service requests, limited to 90 days or 1000 entries
     Open311.service_requests
+    
+    # Grab a service request
+    Open311.service_request('12345')    
 
 Contributing
 ------------

@@ -42,6 +42,19 @@ module Open311
         format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response        
       end
       
+      # @format :xml
+      # @key false
+      # @param id String of the service request id 
+      # @param options [Hash] A customizable set of options.
+      # @return Hash
+      # @see http://wiki.open311.org/GeoReport_v2#GET_Service_Requests
+      #   Open311.service_requests           
+      def service_request(id, options={})
+        options.merge!(:jurisdiction_id => jurisdiction, :lat => lat, :long => long)
+        response = get("requests/#{id}", options)
+        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response        
+      end
+      
     end
   end
 end

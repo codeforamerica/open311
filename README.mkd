@@ -20,9 +20,9 @@ Usage Examples
     
     # Certain methods require an API key
     Open311.configure do |config|
-      config.endpoint     = 'http://api.dc.gov/open311/v2_dev/'
+      config.endpoint     = 'https://open311.sfgov.org/dev/v2/'
       config.format       = 'xml'
-      config.jurisdiction = 'dc.org'
+      config.jurisdiction = 'sfgov.org'
       config.lat = '38.888486'
       config.long = '-77.020179'      
     end
@@ -32,6 +32,9 @@ Usage Examples
     
     # If meta data is available, provide attributes and definition for the service code
     Open311.service_definition('033')
+    
+    # Grab service requests, limited to 90 days or 1000 entries
+    Open311.service_requests
 
 Contributing
 ------------

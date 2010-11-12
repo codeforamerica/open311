@@ -1,3 +1,4 @@
+require 'rubygems'
 require File.expand_path('../spec_helper', __FILE__)
 
 describe Open311, ".service_list" do
@@ -53,5 +54,33 @@ describe Open311, ".service_definition" do
     service_def = Open311.service_definition('033')
     service_def.should be_an Hash
     service_def.service_code.should == "DMV66"
+  end
+end
+
+describe Open311, ".service_requests" do
+  before do
+    Open311.configure do |config|
+      config.endpoint     = 'http://blasius.ws:3003/open311/'
+      config.format       = 'xml'
+      config.jurisdiction = 'dc.gov'
+      config.lat = '38.888486'
+      config.long = '-77.020179'
+    end
+    stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    Open311.service_requests
+    a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      should have_been_made
+  end
+
+  it "should return the correct results" do
+    services = Open311.service_requests
+    services.should be_an Array
+    services.first.service_request_id.should == '638344'
   end
 end

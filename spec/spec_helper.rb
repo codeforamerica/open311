@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'simplecov'
 SimpleCov.start do
   add_group 'Open311', 'lib/open311'

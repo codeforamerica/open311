@@ -43,6 +43,18 @@ module Open311
       end
       
       # @format :xml
+      # @key true
+      # @param options [Hash] A customizable set of options.
+      # @return Hash
+      # @see http://wiki.open311.org/GeoReport_v2#POST_Service_Request
+      #   Open311.service_request
+      def service_request(options={})
+        options.merge!(:jurisdiction_id => jurisdiction, :lat => lat, :long => long, :api_key => api_key)
+        response = post("requests", options)
+        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response
+      end
+
+      # @format :xml
       # @key false
       # @param id String of the service request id 
       # @param options [Hash] A customizable set of options.

@@ -136,14 +136,9 @@ describe Open311, ".service_request" do
       :description => "A large sinkhole is destroying the street",
       :media_url => "http://farm3.static.flickr.com/2002/2212426634_5ed477a060.jpg"
     }
-    encoded_service_params = Hash[*(@service_request_params.map {|k,v| [k, Rack::Utils.escape(v)]}.flatten)]
-
-    stub_request(:post, 'http://blasius.ws:3003/open311/requests.xml').
-      with(:body => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179', :api_key => 'xyz'}.merge(encoded_service_params)).
+    stub_request(:post, 'blasius.ws:3003/open311/requests.xml').
+      with(:body => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179', :api_key => 'xyz'}.merge(@service_request_params)).
       to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
-    # stub_request(:post, 'http://blasius.ws:3003/open311/requests.xml').
-    #   with(:body => /.*/).
-    #   to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
     
   it "should return the correct results" do

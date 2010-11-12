@@ -37,7 +37,7 @@ Usage Examples
     Open311.service_requests
     
     # Grab a service request, requires ID
-    Open311.service_request('12345')    
+    Open311.get_service_request('12345')    
 
 Contributing
 ------------

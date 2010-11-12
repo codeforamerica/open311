@@ -142,6 +142,7 @@ describe Open311, ".post_service_request" do
   end
 end
 
+
 describe Open311, ".request_id" do
 
   before do

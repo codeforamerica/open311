@@ -66,7 +66,19 @@ module Open311
         response = get("requests/#{id}", options)
         format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response        
       end
-      
+
+      # @format :xml
+      # @key false
+      # @param token_id A token included in the response to .service_response request
+      # @param options [Hash] A customizable set of options.
+      # @return Array
+      # @see http://wiki.open311.org/GeoReport_v2#GET_request_id_from_a_token
+      #   Open311.request_id
+      def request_id(token_id, options = {})
+        options.merge!(:jurisdiction_id => jurisdiction)
+        response = get("tokens/#{token_id}", options)
+        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response
+      end
     end
   end
 end

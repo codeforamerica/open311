@@ -146,3 +146,31 @@ describe Open311, ".post_service_request" do
     service_request_response.service_request_id.should == '293944'
   end
 end
+
+describe Open311, ".request_id" do
+
+  before do
+    Open311.configure do |config|
+      config.endpoint     = 'http://open311.sfgov.org/dev/v2/'
+      config.format       = 'xml'
+      config.jurisdiction = 'sfgov.org'
+    end
+    stub_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
+      with(:query => {:jurisdiction_id => 'sfgov.org'}).
+      to_return(:body => fixture('request_id_from_token.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+  end
+
+  it "should request the correct resource" do
+    Open311.request_id(12345)
+    a_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
+      with(:query => {:jurisdiction_id => 'sfgov.org'}).
+      should have_been_made
+  end
+
+  it "should return the correct result" do
+    service_request = Open311.request_id(12345)
+    service_request.service_request_id.should == '638344'
+    service_request.token.should == '12345'
+  end
+
+end

@@ -3,19 +3,21 @@ require File.expand_path('../spec_helper', __FILE__)
 describe Open311, ".service_list" do
   before do
     Open311.configure do |config|
-      config.endpoint     = 'https://open311.sfgov.org/'
+      config.endpoint     = 'http://api.dc.org/open311/v2_dev/'
       config.format       = 'xml'
-      config.jurisdiction = 'sfgov.org'
+      config.jurisdiction = 'dc.gov'
+      config.lat = '38.888486'
+      config.long = '-77.020179'
     end
-    stub_request(:get, 'https://open311.sfgov.org/dev/v2/services.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'}).
+    stub_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       to_return(:body => fixture('services.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     Open311.service_list
-    a_request(:get, 'https://open311.sfgov.org/dev/v2/services.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'}).
+    a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       should have_been_made
   end
 
@@ -29,19 +31,21 @@ end
 describe Open311, ".service_definition" do
   before do
     Open311.configure do |config|
-      config.endpoint     = 'https://open311.sfgov.org/'
+      config.endpoint     = 'http://blasius.ws:3003/open311/'
       config.format       = 'xml'
-      config.jurisdiction = 'sfgov.org'
+      config.jurisdiction = 'dc.gov'
+      config.lat = '38.888486'
+      config.long = '-77.020179'
     end
-    stub_request(:get, 'https://open311.sfgov.org/dev/v2/services/033.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'}).
+    stub_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       to_return(:body => fixture('service_definition.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it "should request the correct resource" do
     Open311.service_definition('033')
-    a_request(:get, 'https://open311.sfgov.org/dev/v2/services/033.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'}).
+    a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       should have_been_made
   end
 

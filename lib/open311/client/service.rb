@@ -11,8 +11,8 @@ module Open311
       # @example Provide a list of acceptable 311 service request types and their associated service codes
       #   Open311.service_list
       def service_list(options={})
-        options.merge!(:jurisdiction_id => jurisdiction)
-        response = get('dev/v2/services', options)
+        options.merge!(:jurisdiction_id => jurisdiction, :lat => lat, :long => long)
+        response = get('services', options)
         format.to_s.downcase == 'xml' ? response['services']['service'] : response
       end
 
@@ -25,8 +25,8 @@ module Open311
       # @example define attributes associated with a service code, i.e. 033
       #   Open311.service_definition     
       def service_definition(id, options={})
-        options.merge!(:jurisdiction_id => jurisdiction)
-        response = get("dev/v2/services/#{id}", options)
+        options.merge!(:jurisdiction_id => jurisdiction, :lat => lat, :long => long)
+        response = get("services/#{id}", options)
         format.to_s.downcase == 'xml' ? response['service_definition'] : response        
       end
     end

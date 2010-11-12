@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service_requests>
+<request>
+	<service_request_id>638344</service_request_id>
+	<status>closed</status>
+	<status_notes>Duplicate request.</status_notes>
+	<service_name>Sidewalk and Curb Issues</service_name>
+	<service_code>006</service_code>
+	<description></description>
+	<agency_responsible></agency_responsible>
+	<service_notice></service_notice>
+	<requested_datetime>2010-04-14T06:37:38-08:00</requested_datetime>
+	<updated_datetime>2010-04-14T06:37:38-08:00</updated_datetime>
+	<expected_datetime>2010-04-15T06:37:38-08:00</expected_datetime>
+	<address>8TH AVE and JUDAH ST</address>
+	<address_id>545483</address_id>
+	<zipcode>94122</zipcode>
+	<lat>37.762221815</lat>
+	<long>-122.4651145</long>
+	<media_url>http://open311.city.gov.s3.amazonaws.com/requests/media/638344.rss </media_url>
+</request>
+<request>
+	<service_request_id>638349</service_request_id>
+	<status>open</status>
+	<status_notes></status_notes>
+	<service_name>Sidewalk and Curb Issues</service_name>
+	<service_code>006</service_code>
+	<description></description>
+	<agency_responsible></agency_responsible>
+	<service_notice></service_notice>
+	<requested_datetime>2010-04-19T06:37:38-08:00</requested_datetime>
+	<updated_datetime>2010-04-19T06:37:38-08:00</updated_datetime>
+	<expected_datetime>2010-04-19T06:37:38-08:00</expected_datetime>
+	<address>8TH AVE and JUDAH ST</address>
+	<address_id>545483</address_id>
+	<zipcode>94122</zipcode>
+	<lat>37.762221815</lat>
+	<long>-122.4651145</long>
+	<media_url>http://open311.city.gov.s3.amazonaws.com/requests/media/638349.rss </media_url>
+</request>
+</service_requests>

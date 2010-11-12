@@ -39,7 +39,13 @@ module Open311
       def service_requests(options={})
         options.merge!(:jurisdiction_id => jurisdiction, :lat => lat, :long => long)
         response = get("requests", options)
-        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response
+        if format.to_s.downcase == 'xml'
+          response.service_requests.request.map do |request|
+            ServiceRequest.new(request)
+          end
+        else
+          response        
+        end
       end
 
       # @format :xml

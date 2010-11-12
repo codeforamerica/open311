@@ -22,6 +22,7 @@ Usage Examples
     Open311.configure do |config|
       config.endpoint     = 'https://open311.sfgov.org/dev/v2/'
       config.format       = 'xml'
+      config.key          = 'yourkeyforpostrequests'      
       config.jurisdiction = 'sfgov.org'
       config.lat = '38.888486'
       config.long = '-77.020179'      

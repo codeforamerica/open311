@@ -22,7 +22,7 @@ Usage Examples
     Open311.configure do |config|
       config.endpoint     = 'https://open311.sfgov.org/dev/v2/'
       config.format       = 'xml'
-      config.key          = 'yourkeyforpostrequests'      
+      config.api_key          = 'yourkeyforpostrequests'      
       config.jurisdiction = 'sfgov.org'
       config.lat = '38.888486'
       config.long = '-77.020179'      
@@ -42,6 +42,9 @@ Usage Examples
         
     # Post a service request, requires an api key
     Open311.post_service_request
+    
+    # Get a service_request_id using a token after a post_service_request
+    Open311.request_id('12345')
     
 Contributing
 ------------

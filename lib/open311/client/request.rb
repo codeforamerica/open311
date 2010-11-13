@@ -26,7 +26,7 @@ module Open311
               request.url(formatted_path(path), options)
             when :post, :put
               request.path = formatted_path(path)
-              request.body = options
+              request.body = options unless options.empty?
           end
         end
         raw ? response : response.body

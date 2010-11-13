@@ -9,10 +9,10 @@ module Open311
     DEFAULT_ADAPTER      = Faraday.default_adapter.freeze
     DEFAULT_API_KEY      = nil.freeze
     DEFAULT_ENDPOINT     = nil.freeze
-    DEFAULT_FORMAT       = :json.freeze
+    DEFAULT_FORMAT       = :xml.freeze
     DEFAULT_JURISDICTION = nil.freeze
     DEFAULT_LAT          = nil.freeze
-    DEFAULT_LONG         = nil.freeze        
+    DEFAULT_LONG         = nil.freeze
     DEFAULT_PROXY        = nil.freeze
     DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::VERSION}".freeze
 

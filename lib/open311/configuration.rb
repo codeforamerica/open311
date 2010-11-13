@@ -12,7 +12,7 @@ module Open311
     DEFAULT_FORMAT       = :json.freeze
     DEFAULT_JURISDICTION = nil.freeze
     DEFAULT_LAT          = nil.freeze
-    DEFAULT_LONG         = nil.freeze        
+    DEFAULT_LONG         = nil.freeze
     DEFAULT_PROXY        = nil.freeze
     DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::VERSION}".freeze
 

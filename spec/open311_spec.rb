@@ -6,7 +6,6 @@ describe Open311, ".service_list" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://api.dc.org/open311/v2_dev/'
-      config.format       = 'xml'
       config.jurisdiction = 'dc.gov'
       config.lat          = '38.888486'
       config.long         = '-77.020179'
@@ -34,7 +33,6 @@ describe Open311, ".service_definition" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
-      config.format       = 'xml'
       config.jurisdiction = 'dc.gov'
       config.lat          = '38.888486'
       config.long         = '-77.020179'
@@ -62,7 +60,6 @@ describe Open311, ".service_requests" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
-      config.format       = 'xml'
       config.jurisdiction = 'dc.gov'
       config.lat          = '38.888486'
       config.long         = '-77.020179'
@@ -90,7 +87,6 @@ describe Open311, ".get_service_request" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
-      config.format       = 'xml'
       config.jurisdiction = 'dc.gov'
       config.lat          = '38.888486'
       config.long         = '-77.020179'
@@ -118,7 +114,6 @@ describe Open311, ".post_service_request" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
-      config.format       = 'xml'
       config.jurisdiction = 'dc.gov'
       config.lat          = '38.888486'
       config.api_key      = 'xyz'
@@ -152,7 +147,6 @@ describe Open311, ".request_id" do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://open311.sfgov.org/dev/v2/'
-      config.format       = 'xml'
       config.jurisdiction = 'sfgov.org'
     end
     stub_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').

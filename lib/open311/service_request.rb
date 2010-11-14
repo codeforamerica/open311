@@ -1,7 +1,5 @@
 module Open311
-  
   class ServiceRequest
-    
     attr_reader :token, :id
 
     def initialize(hash)
@@ -15,7 +13,5 @@ module Open311
       return super unless @hash.has_key?(method)
       @hash[method]
     end
-    
   end
-
 end

@@ -44,7 +44,7 @@ module Open311
             ServiceRequest.new(request)
           end
         else
-          response        
+          response
         end
       end
 

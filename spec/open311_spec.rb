@@ -7,8 +7,6 @@ describe Open311, ".service_list" do
     Open311.configure do |config|
       config.endpoint     = 'http://api.dc.org/open311/v2_dev/'
       config.jurisdiction = 'dc.gov'
-      config.lat          = '38.888486'
-      config.long         = '-77.020179'
     end
     stub_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
@@ -16,14 +14,14 @@ describe Open311, ".service_list" do
   end
 
   it "should request the correct resource" do
-    Open311.service_list
+    Open311.service_list(:lat => '38.888486', :long => '-77.020179')
     a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    services = Open311.service_list
+    services = Open311.service_list(:lat => '38.888486', :long => '-77.020179')
     services.should be_an Array
     services.first.service_code.should == '001'
   end
@@ -34,8 +32,6 @@ describe Open311, ".service_definition" do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
       config.jurisdiction = 'dc.gov'
-      config.lat          = '38.888486'
-      config.long         = '-77.020179'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
@@ -43,14 +39,14 @@ describe Open311, ".service_definition" do
   end
 
   it "should request the correct resource" do
-    Open311.service_definition('033')
+    Open311.service_definition('033', :lat => '38.888486', :long => '-77.020179')
     a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    service_def = Open311.service_definition('033')
+    service_def = Open311.service_definition('033', :lat => '38.888486', :long => '-77.020179')
     service_def.should be_an Hash
     service_def.service_code.should == "DMV66"
   end
@@ -61,8 +57,6 @@ describe Open311, ".service_requests" do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
       config.jurisdiction = 'dc.gov'
-      config.lat          = '38.888486'
-      config.long         = '-77.020179'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
@@ -70,14 +64,14 @@ describe Open311, ".service_requests" do
   end
 
   it "should request the correct resource" do
-    Open311.service_requests
+    Open311.service_requests(:lat => '38.888486', :long => '-77.020179')
     a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    service_requests = Open311.service_requests
+    service_requests = Open311.service_requests(:lat => '38.888486', :long => '-77.020179')
     service_requests.should be_an Array
     service_requests.length.should == 2
     service_requests.first.id.should == 638344
@@ -89,8 +83,6 @@ describe Open311, ".get_service_request" do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
       config.jurisdiction = 'dc.gov'
-      config.lat          = '38.888486'
-      config.long         = '-77.020179'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
@@ -98,14 +90,14 @@ describe Open311, ".get_service_request" do
   end
 
   it "should request the correct resource" do
-    Open311.get_service_request('638344')
+    Open311.get_service_request('638344', :lat => '38.888486', :long => '-77.020179')
     a_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
       with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    service_request = Open311.get_service_request(638344)
+    service_request = Open311.get_service_request(638344, :lat => '38.888486', :long => '-77.020179')
     service_request.id.should == 638344
   end
 end
@@ -115,24 +107,25 @@ describe Open311, ".post_service_request" do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
       config.jurisdiction = 'dc.gov'
-      config.lat          = '38.888486'
       config.api_key      = 'xyz'
     end
 
     @service_request_params = {
       :service_code   => '001',
-      :address_string => "1234 5th street",
-      :email          => "smit222@sfgov.edu",
-      :device_id      => "tt222111",
-      :account_id     => "123456",
-      :first_name     => "john",
-      :last_name      => "smith",
-      :phone          => "111111111",
-      :description    => "A large sinkhole is destroying the street",
-      :media_url      => "http://farm3.static.flickr.com/2002/2212426634_5ed477a060.jpg",
+      :address_string => '1234 5th street',
+      :email          => 'smit222@sfgov.edu',
+      :device_id      => 'tt222111',
+      :account_id     => '123456',
+      :first_name     => 'john',
+      :last_name      => 'smith',
+      :phone          => '111111111',
+      :description    => 'A large sinkhole is destroying the street',
+      :media_url      => 'http://farm3.static.flickr.com/2002/2212426634_5ed477a060.jpg',
+      :lat            => '38.888486',
+      :long           => '-77.020179',
     }
     stub_request(:post, 'blasius.ws:3003/open311/requests.xml').
-      with(:body => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179', :api_key => 'xyz'}.merge(@service_request_params)).
+      with(:body => {:jurisdiction_id => 'dc.gov', :api_key => 'xyz'}.merge(@service_request_params)).
       to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 

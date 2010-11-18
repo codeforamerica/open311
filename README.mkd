@@ -23,8 +23,6 @@ Usage Examples
       config.endpoint     = 'https://open311.sfgov.org/dev/v2/'
       config.api_key      = 'yourkeyforpostrequests'
       config.jurisdiction = 'sfgov.org'
-      config.lat          = '38.888486'
-      config.long         = '-77.020179'
     end
     
     # Provide a list of acceptable 311 service request types and their associated service codes

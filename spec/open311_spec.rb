@@ -34,19 +34,19 @@ describe Open311, ".service_definition" do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      with(:query => {:jurisdiction_id => 'dc.gov'}).
       to_return(:body => fixture('service_definition.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it "should request the correct resource" do
-    Open311.service_definition('033', :lat => '38.888486', :long => '-77.020179')
+    Open311.service_definition('033')
     a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      with(:query => {:jurisdiction_id => 'dc.gov'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    service_def = Open311.service_definition('033', :lat => '38.888486', :long => '-77.020179')
+    service_def = Open311.service_definition('033')
     service_def.should be_an Hash
     service_def.service_code.should == "DMV66"
   end

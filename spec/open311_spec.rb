@@ -59,19 +59,19 @@ describe Open311, ".service_requests" do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      with(:query => {:jurisdiction_id => 'dc.gov'}).
       to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it "should request the correct resource" do
-    Open311.service_requests(:lat => '38.888486', :long => '-77.020179')
+    Open311.service_requests
     a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      with(:query => {:jurisdiction_id => 'dc.gov'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    service_requests = Open311.service_requests(:lat => '38.888486', :long => '-77.020179')
+    service_requests = Open311.service_requests
     service_requests.should be_an Array
     service_requests.length.should == 2
     service_requests.first.id.should == 638344

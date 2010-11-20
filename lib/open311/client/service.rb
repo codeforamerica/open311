@@ -13,7 +13,9 @@ module Open311
       def service_list(options={})
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get('services', options)
-        format.to_s.downcase == 'xml' ? response['services']['service'] : response
+        unpack_if_xml(response) do
+          response['services']['service']
+        end
       end
 
       # @format :xml
@@ -27,7 +29,9 @@ module Open311
       def service_definition(id, options={})
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("services/#{id}", options)
-        format.to_s.downcase == 'xml' ? response['service_definition'] : response
+        unpack_if_xml(response) do
+          response['service_definition']
+        end
       end
 
       # @format :xml
@@ -39,12 +43,10 @@ module Open311
       def service_requests(options={})
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("requests", options)
-        if format.to_s.downcase == 'xml'
+        unpack_if_xml(response) do
           response.service_requests.request.map do |request|
             ServiceRequest.new(request)
           end
-        else
-          response
         end
       end
 
@@ -57,7 +59,9 @@ module Open311
       def post_service_request(options={})
         options.merge!(:jurisdiction_id => jurisdiction, :api_key => api_key)
         response = post("requests", options)
-        format.to_s.downcase == 'xml' ? response['service_requests']['request'] : response
+        unpack_if_xml(response) do
+          response['service_requests']['request']
+        end
       end
 
       # @format :xml
@@ -70,7 +74,9 @@ module Open311
       def get_service_request(id, options={})
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("requests/#{id}", options)
-        format.to_s.downcase == 'xml' ? ServiceRequest.new(response.service_requests.request.first) : response
+        unpack_if_xml(response) do
+          ServiceRequest.new(response.service_requests.request.first)
+        end
       end
 
       # @format :xml
@@ -83,7 +89,19 @@ module Open311
       def request_id_from_token(token_id, options = {})
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("tokens/#{token_id}", options)
-        format.to_s.downcase == 'xml' ? ServiceRequest.new(response.service_requests.request) : response
+        unpack_if_xml(response) do
+          ServiceRequest.new(response.service_requests.request)
+        end
+      end
+
+      private 
+
+      def unpack_if_xml(response)
+        if format.to_s.downcase == 'xml'
+          yield
+        else
+          response
+        end
       end
     end
   end

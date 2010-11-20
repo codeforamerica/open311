@@ -9,19 +9,19 @@ describe Open311, ".service_list" do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      with(:query => {:jurisdiction_id => 'dc.gov'}).
       to_return(:body => fixture('services.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it "should request the correct resource" do
-    Open311.service_list(:lat => '38.888486', :long => '-77.020179')
+    Open311.service_list
     a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov', :lat => '38.888486', :long => '-77.020179'}).
+      with(:query => {:jurisdiction_id => 'dc.gov'}).
       should have_been_made
   end
 
   it "should return the correct results" do
-    services = Open311.service_list(:lat => '38.888486', :long => '-77.020179')
+    services = Open311.service_list
     services.should be_an Array
     services.first.service_code.should == '001'
   end

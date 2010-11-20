@@ -135,7 +135,7 @@ describe Open311, ".post_service_request" do
   end
 end
 
-describe Open311, ".request_id" do
+describe Open311, ".request_id_from_token" do
 
   before do
     Open311.configure do |config|
@@ -148,14 +148,14 @@ describe Open311, ".request_id" do
   end
 
   it "should request the correct resource" do
-    Open311.request_id(12345)
+    Open311.request_id_from_token(12345)
     a_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
       with(:query => {:jurisdiction_id => 'sfgov.org'}).
       should have_been_made
   end
 
   it "should return the correct result" do
-    service_request = Open311.request_id(12345)
+    service_request = Open311.request_id_from_token(12345)
     service_request.id.should == 638344
     service_request.token.should == 12345
   end

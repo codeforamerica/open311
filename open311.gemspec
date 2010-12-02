@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('ZenTest', '~> 4.4')
   s.add_runtime_dependency('hashie', '~> 0.4.0')
   s.add_runtime_dependency('faraday', '~> 0.5.3')
-  s.add_runtime_dependency('faraday_middleware', '~> 0.3.0')
+  s.add_runtime_dependency('faraday_middleware', '~> 0.3.1')
   s.add_runtime_dependency('multi_json', '~> 0.0.5')
   s.add_runtime_dependency('multi_xml', '~> 0.2.0')
   s.authors = ["Dan Melton", "Erik Michaels-Ober"]

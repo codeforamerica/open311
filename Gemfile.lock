@@ -11,7 +11,7 @@ PATH
 GEM
   remote: http://rubygems.org/
   specs:
-    ZenTest (4.4.0)
+    ZenTest (4.4.1)
     addressable (2.2.2)
     archive-tar-minitar (0.5.2)
     columnize (0.3.2)

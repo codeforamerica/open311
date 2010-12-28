@@ -75,7 +75,7 @@ module Open311
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("requests/#{id}", options)
         unpack_if_xml(response) do
-          ServiceRequest.new(response.service_requests.request.first)
+          response['service_requests']['request']
         end
       end
 
@@ -90,7 +90,7 @@ module Open311
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get("tokens/#{token_id}", options)
         unpack_if_xml(response) do
-          ServiceRequest.new(response.service_requests.request)
+          response['service_requests']['request']
         end
       end
 

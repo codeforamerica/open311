@@ -73,7 +73,7 @@ describe Open311, ".service_requests" do
   it "should return the correct results" do
     services = Open311.service_requests
     services.should be_an Array
-    services.first.service_request_id.should == '638344'
+    services.first.first.service_request_id.should == '638344'
   end
 end
 
@@ -97,7 +97,8 @@ describe Open311, ".get_service_request" do
 
   it "should return the correct results" do
     service_request = Open311.get_service_request(638344)
-    service_request.id.should == 638344
+    service_request.should be_an Array
+    service_request.first.service_request_id.should == '638344'
   end
 end
 
@@ -114,7 +115,7 @@ describe Open311, ".post_service_request" do
       :address_string => '1234 5th street',
       :email          => 'smit222@sfgov.edu',
       :device_id      => 'tt222111',
-      :account_id     => '123456',
+      :account_id     => '12345',
       :first_name     => 'john',
       :last_name      => 'smith',
       :phone          => '111111111',
@@ -155,8 +156,8 @@ describe Open311, ".request_id_from_token" do
 
   it "should return the correct result" do
     service_request = Open311.request_id_from_token(12345)
-    service_request.id.should == 638344
-    service_request.token.should == 12345
+    service_request.service_request_id.should == '638344'
+    service_request.token.should == '12345'
   end
 
 end

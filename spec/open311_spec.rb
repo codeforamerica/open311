@@ -71,10 +71,9 @@ describe Open311, ".service_requests" do
   end
 
   it "should return the correct results" do
-    service_requests = Open311.service_requests
-    service_requests.should be_an Array
-    service_requests.length.should == 2
-    service_requests.first.id.should == 638344
+    services = Open311.service_requests
+    services.should be_an Array
+    services.first.service_request_id.should == '638344'
   end
 end
 

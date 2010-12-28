@@ -45,7 +45,7 @@ module Open311
         response = get("requests", options)
         unpack_if_xml(response) do
           response.service_requests.request.map do |request|
-            ServiceRequest.new(request)
+            response['service_requests']['request']
           end
         end
       end

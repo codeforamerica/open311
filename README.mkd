@@ -42,6 +42,17 @@ Usage Examples
     
     # Get a service_request_id using a token after a post_service_request
     Open311.request_id('12345')
+    
+    # Get service requests with certain parameters (service_code, start_date, end_date, status)
+    Open311.service_requests("status" => "opened")
+    Open311.service_requests({"status" => "opened", "service_code"=>"broken-streetlight-report", "start_date" => "2010-03-12T03:19:52Z", "end_date" => "2010-03-14T03:19:52Z"}) 
+    
+    # Use Time.now
+    require 'time'
+    Open311.service_requests({"start_date" => (Time.now - 86400).xmlschema, "end_date" => Time.now.xmlschema}) // last 24 hours
+    
+    # Get multiple service requests by ids, comma separated
+    Open311.service_requests({"service_request_id" => "101000119824,101000119823"})
 
 Contributing
 ------------

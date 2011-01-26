@@ -3,15 +3,25 @@ require File.expand_path('../version', __FILE__)
 
 module Open311
   module Configuration
-    VALID_OPTIONS_KEYS   = [:adapter, :api_key, :endpoint, :format, :jurisdiction, :proxy, :user_agent].freeze
-    VALID_FORMATS        = [:json, :xml].freeze
+    VALID_OPTIONS_KEYS = [
+      :adapter,
+      :api_key,
+      :endpoint,
+      :format,
+      :jurisdiction,
+      :proxy,
+      :user_agent].freeze
 
-    DEFAULT_ADAPTER      = Faraday.default_adapter.freeze
-    DEFAULT_API_KEY      = nil.freeze
-    DEFAULT_ENDPOINT     = nil.freeze
-    DEFAULT_FORMAT       = :xml.freeze
-    DEFAULT_JURISDICTION = nil.freeze
-    DEFAULT_PROXY        = nil.freeze
+    VALID_FORMATS = [
+      :json,
+      :xml].freeze
+
+    DEFAULT_ADAPTER      = Faraday.default_adapter
+    DEFAULT_API_KEY      = nil
+    DEFAULT_ENDPOINT     = nil
+    DEFAULT_FORMAT       = :xml
+    DEFAULT_JURISDICTION = nil
+    DEFAULT_PROXY        = nil
     DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::VERSION}".freeze
 
     attr_accessor *VALID_OPTIONS_KEYS

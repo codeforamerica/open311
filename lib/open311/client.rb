@@ -1,4 +1,6 @@
-Dir[File.expand_path('../client/*.rb', __FILE__)].each{|file| require file}
+require 'open311/client/connection'
+require 'open311/client/request'
+require 'open311/client/service'
 
 module Open311
   class Client

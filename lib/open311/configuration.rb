@@ -1,5 +1,5 @@
 require 'faraday'
-require File.expand_path('../version', __FILE__)
+require 'open311/version'
 
 module Open311
   module Configuration

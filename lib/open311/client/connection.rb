@@ -1,5 +1,6 @@
 require 'faraday_middleware'
-Dir[File.expand_path('../../../faraday/*.rb', __FILE__)].each{|file| require file}
+require 'faraday/multipart'
+require 'faraday/raise_error'
 
 module Open311
   class Client

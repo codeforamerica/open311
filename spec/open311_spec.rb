@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'json'
-require File.expand_path('../spec_helper', __FILE__)
+require 'helper'
 
 describe Open311, ".service_list" do
   before do

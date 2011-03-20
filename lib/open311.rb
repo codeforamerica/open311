@@ -1,5 +1,5 @@
-require File.expand_path('../open311/configuration', __FILE__)
-require File.expand_path('../open311/client', __FILE__)
+require 'open311/configuration'
+require 'open311/client'
 
 module Open311
   extend Configuration

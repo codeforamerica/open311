@@ -118,7 +118,7 @@ describe Open311, ".post_service_request" do
       :last_name      => 'smith',
       :phone          => '111111111',
       :description    => 'A large sinkhole is destroying the street',
-      :media_url      => 'http://farm3.static.flickr.com/2002/2212426634_5ed477a060.jpg',
+      :media_url      => 'http://farm5.static.flickr.com/4057/4660699337_9aa4541ce1_o.jpg',
       :lat            => '38.888486',
       :long           => '-77.020179',
     }

@@ -108,7 +108,12 @@ describe Open311, ".post_service_request" do
       config.api_key      = 'xyz'
     end
 
-    @service_request_params = {
+    stub_request(:post, 'blasius.ws:3003/open311/requests.xml').
+      to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+  end
+
+  it "should return the correct results" do
+    service_request_params = {
       :service_code   => '001',
       :address_string => '1234 5th street',
       :email          => 'smit222@sfgov.edu',
@@ -122,13 +127,7 @@ describe Open311, ".post_service_request" do
       :lat            => '38.888486',
       :long           => '-77.020179',
     }
-    stub_request(:post, 'blasius.ws:3003/open311/requests.xml').
-      with(:body => {:jurisdiction_id => 'dc.gov', :api_key => 'xyz'}.merge(@service_request_params)).
-      to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
-  end
-
-  it "should return the correct results" do
-    service_request_response = Open311.post_service_request(@service_request_params)
+    service_request_response = Open311.post_service_request(service_request_params)
     service_request_response.service_request_id.should == '293944'
   end
 end

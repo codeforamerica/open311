@@ -1,5 +1,4 @@
 require 'faraday_middleware'
-require 'faraday/multipart'
 require 'faraday/raise_error'
 
 module Open311

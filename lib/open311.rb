@@ -17,6 +17,10 @@ module Open311
     client.send(method, *args, &block)
   end
 
+  def self.respond_to?(method, include_private=false)
+    client.respond_to?(method, include_private) || super(method, include_private)
+  end
+
   # Custom error class for rescuing from all Open311 errors
   class Error < StandardError; end
 

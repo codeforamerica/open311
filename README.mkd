@@ -14,6 +14,10 @@ Documentation
 -------------
 <http://rdoc.info/github/cfalabs/open311/master/frames>
 
+Continuous Integration
+----------------------
+[![Build Status](http://travis-ci.org/codeforamerica/open311.png)](http://travis-ci.org/codeforamerica/open311)
+
 Usage Examples
 --------------
     require 'open311'

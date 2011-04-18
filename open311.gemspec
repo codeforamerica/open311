@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.description = %q{A Ruby wrapper for the Open311 API v2.}
   s.post_install_message =<<eos
 Using this gem in your project or organization? Add it to the apps wiki!
-https://github.com/cfalabs/open311/wiki/apps
+https://github.com/codeforamerica/open311/wiki/apps
 eos
   s.email = ['dan@codeforamerica.org', 'erik@codeforamerica.org']
   s.executables = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }

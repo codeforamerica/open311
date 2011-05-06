@@ -8,7 +8,7 @@ Add it to the [apps](http://github.com/codeforamerica/open311/wiki/apps) wiki!
 
 Installation
 ------------
-    $ [sudo] gem install open311
+    gem install open311
 
 Documentation
 -------------

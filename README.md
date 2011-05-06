@@ -21,40 +21,40 @@ Continuous Integration
 Usage Examples
 --------------
     require 'open311'
-    
+
     # Certain methods require an API key
     Open311.configure do |config|
       config.endpoint     = 'https://open311.sfgov.org/dev/v2/'
       config.api_key      = 'yourkeyforpostrequests'
       config.jurisdiction = 'sfgov.org'
     end
-    
+
     # Provide a list of acceptable 311 service request types and their associated service codes
     Open311.service_list
-    
+
     # If meta data is available, provide attributes and definition for the service code
     Open311.service_definition('033')
-    
+
     # Grab service requests, limited to 90 days or 1000 entries
     Open311.service_requests
-    
+
     # Grab a service request, requires ID
     Open311.get_service_request('12345')
-    
+
     # Post a service request, requires an api key
     Open311.post_service_request
-    
+
     # Get a service_request_id using a token after a post_service_request
     Open311.request_id('12345')
-    
+
     # Get service requests with certain parameters (service_code, start_date, end_date, status)
     Open311.service_requests("status" => "opened")
-    Open311.service_requests({"status" => "opened", "service_code"=>"broken-streetlight-report", "start_date" => "2010-03-12T03:19:52Z", "end_date" => "2010-03-14T03:19:52Z"}) 
-    
+    Open311.service_requests({"status" => "opened", "service_code"=>"broken-streetlight-report", "start_date" => "2010-03-12T03:19:52Z", "end_date" => "2010-03-14T03:19:52Z"})
+
     # Use Time.now
     require 'time'
     Open311.service_requests({"start_date" => (Time.now - 86400).xmlschema, "end_date" => Time.now.xmlschema}) // last 24 hours
-    
+
     # Get multiple service requests by ids, comma separated
     Open311.service_requests({"service_request_id" => "101000119824,101000119823"})
 
@@ -98,4 +98,4 @@ Submitting a Pull Request
 Copyright
 ---------
 Copyright (c) 2010 Code for America Laboratories
-See [LICENSE](https://github.com/codeforamerica/open311/blob/master/LICENSE.mkd) for details.
+See [LICENSE](https://github.com/codeforamerica/open311/blob/master/LICENSE.md) for details.

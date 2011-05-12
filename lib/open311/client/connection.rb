@@ -15,7 +15,7 @@ module Open311
           :url => endpoint
         }
 
-        Faraday::Connection.new(options) do |connection|
+        Faraday.new(options) do |connection|
           connection.use Faraday::Request::Multipart
           unless raw
             connection.use Faraday::Response::Mashify

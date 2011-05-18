@@ -1,8 +1,6 @@
 source 'http://rubygems.org'
 
 group :development do
-  gem 'yard', :git => 'https://github.com/lsegal/yard.git'
-
   platform :mri_18 do
     gem 'ruby-debug'
   end

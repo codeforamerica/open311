@@ -99,3 +99,5 @@ Copyright
 ---------
 Copyright (c) 2010 Code for America Laboratories
 See [LICENSE](https://github.com/codeforamerica/open311/blob/master/LICENSE.md) for details.
+
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/open311.png)](http://stats.codeforamerica.org/projects/open311)

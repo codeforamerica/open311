@@ -7,13 +7,13 @@ describe Open311 do
 
   describe ".respond_to?" do
     it "should return true if method exists" do
-      Open311.respond_to?(:client, true).should be_true
+      Open311.respond_to?(:new, true).should be_true
     end
   end
 
-  describe ".client" do
+  describe ".new" do
     it "should be a Open311::Client" do
-      Open311.client.should be_a Open311::Client
+      Open311.new.should be_a Open311::Client
     end
   end
 end

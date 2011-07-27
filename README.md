@@ -16,7 +16,7 @@ Documentation
 
 Continuous Integration
 ----------------------
-[![Build Status](http://travis-ci.org/codeforamerica/open311.png)](http://travis-ci.org/codeforamerica/open311)
+[![Build Status](https://secure.travis-ci.org/codeforamerica/open311.png)](http://travis-ci.org/codeforamerica/open311)
 
 Usage Examples
 --------------

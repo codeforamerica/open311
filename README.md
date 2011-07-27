@@ -102,7 +102,6 @@ against](http://travis-ci.org/codeforamerica/open311) the following Ruby
 implementations:
 
 * Ruby 1.8.7
-* Ruby 1.9.1
 * Ruby 1.9.2
 * Ruby Enterprise Edition 1.8.7
 

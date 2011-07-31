@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-group :development do
+group :debug do
   platform :mri_18 do
     gem 'ruby-debug'
   end

@@ -11,7 +11,7 @@ Add it to the [apps](https://github.com/codeforamerica/open311/wiki/apps) wiki!
 [http://rdoc.info/gems/open311](http://rdoc.info/gems/open311)
 
 ## <a name="ci">Continuous Integration</a>
-[![Build Status](https://travis-ci.org/codeforamerica/open311.png)](http://travis-ci.org/codeforamerica/open311)
+[![Build Status](https://secure.travis-ci.org/codeforamerica/open311.png)](http://travis-ci.org/codeforamerica/open311)
 
 ## <a name="examples">Usage Examples</a>
     require 'open311'

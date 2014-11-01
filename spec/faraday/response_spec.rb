@@ -24,9 +24,9 @@ describe Faraday::Response do
       end
 
       it "should raise #{exception.name} error" do
-        lambda do
+        expect do
           Open311.service_list
-        end.should raise_error(exception)
+        end.to raise_error(exception)
       end
     end
   end

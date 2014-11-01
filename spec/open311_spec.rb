@@ -7,13 +7,13 @@ describe Open311 do
 
   describe ".respond_to?" do
     it "should return true if method exists" do
-      Open311.respond_to?(:new, true).should be true
+      expect(Open311.respond_to?(:new, true)).to be true
     end
   end
 
   describe ".new" do
     it "should be a Open311::Client" do
-      Open311.new.should be_a Open311::Client
+      expect(Open311.new).to be_a Open311::Client
     end
   end
 end
@@ -31,15 +31,15 @@ describe Open311, ".service_list" do
 
   it "should request the correct resource" do
     Open311.service_list
-    a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      should have_been_made
+    expect(a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      to have_been_made
   end
 
   it "should return the correct results" do
     services = Open311.service_list
-    services.should be_an Array
-    services.first.service_code.should == '001'
+    expect(services).to be_an Array
+    expect(services.first.service_code).to eq('001')
   end
 end
 
@@ -56,15 +56,15 @@ describe Open311, ".service_definition" do
 
   it "should request the correct resource" do
     Open311.service_definition('033')
-    a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      should have_been_made
+    expect(a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      to have_been_made
   end
 
   it "should return the correct results" do
     service_def = Open311.service_definition('033')
-    service_def.should be_an Hash
-    service_def.service_code.should == "DMV66"
+    expect(service_def).to be_an Hash
+    expect(service_def.service_code).to eq("DMV66")
   end
 end
 
@@ -81,15 +81,15 @@ describe Open311, ".service_requests" do
 
   it "should request the correct resource" do
     Open311.service_requests
-    a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      should have_been_made
+    expect(a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      to have_been_made
   end
 
   it "should return the correct results" do
     services = Open311.service_requests
-    services.should be_an Array
-    services.first.first.service_request_id.should == '638344'
+    expect(services).to be_an Array
+    expect(services.first.first.service_request_id).to eq('638344')
   end
 end
 
@@ -106,15 +106,15 @@ describe Open311, ".get_service_request" do
 
   it "should request the correct resource" do
     Open311.get_service_request(638344)
-    a_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      should have_been_made
+    expect(a_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
+      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      to have_been_made
   end
 
   it "should return the correct results" do
     service_request = Open311.get_service_request(638344)
-    service_request.should be_an Array
-    service_request.first.service_request_id.should == '638344'
+    expect(service_request).to be_an Array
+    expect(service_request.first.service_request_id).to eq('638344')
   end
 end
 
@@ -146,7 +146,7 @@ describe Open311, ".post_service_request" do
       :long           => '-77.020179',
     }
     service_request_response = Open311.post_service_request(service_request_params)
-    service_request_response.service_request_id.should == '293944'
+    expect(service_request_response.service_request_id).to eq('293944')
   end
 end
 
@@ -164,15 +164,15 @@ describe Open311, ".request_id_from_token" do
 
   it "should request the correct resource" do
     Open311.request_id_from_token(12345)
-    a_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'}).
-      should have_been_made
+    expect(a_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
+      with(:query => {:jurisdiction_id => 'sfgov.org'})).
+      to have_been_made
   end
 
   it "should return the correct result" do
     service_request = Open311.request_id_from_token(12345)
-    service_request.service_request_id.should == '638344'
-    service_request.token.should == '12345'
+    expect(service_request.service_request_id).to eq('638344')
+    expect(service_request.token).to eq('12345')
   end
 
 end

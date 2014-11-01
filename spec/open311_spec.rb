@@ -89,7 +89,8 @@ describe Open311, '.service_requests' do
   it 'should return the correct results' do
     services = Open311.service_requests
     expect(services).to be_an Array
-    expect(services.first.first.service_request_id).to eq('638344')
+    expect(services.size).to eq(2)
+    expect(services.first.service_request_id).to eq('638344')
   end
 
   describe 'with no results' do

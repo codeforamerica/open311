@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<errors>
+  <error>
+    <code>404</code>
+    <description>Service request not found with id or token not-an-id</description>
+  </error>
+</errors>

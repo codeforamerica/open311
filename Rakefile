@@ -30,4 +30,14 @@ namespace :doc do
   end
 end
 
-task :default => [:spec, :rubocop]
+require 'yardstick/rake/measurement'
+Yardstick::Rake::Measurement.new do |measurement|
+  measurement.output = 'measurement/report.txt'
+end
+
+require 'yardstick/rake/verify'
+Yardstick::Rake::Verify.new do |verify|
+  verify.threshold = 58
+end
+
+task :default => [:spec, :rubocop, :verify_measurements]

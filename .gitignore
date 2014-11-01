@@ -7,4 +7,5 @@ Gemfile.lock
 coverage/*
 doc/*
 log/*
+measurement/*
 pkg/*

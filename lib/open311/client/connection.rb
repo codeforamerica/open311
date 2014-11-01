@@ -1,5 +1,5 @@
 require 'faraday_middleware'
-require 'faraday/response/raise_error'
+require 'open311/response/raise_error'
 
 module Open311
   class Client
@@ -28,7 +28,7 @@ module Open311
               connection.use Faraday::Response::ParseXml
             end
           end
-          connection.use Faraday::Response::RaiseError
+          connection.use Open311::Response::RaiseError
           connection.adapter(adapter)
         end
       end

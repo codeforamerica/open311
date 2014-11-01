@@ -1,9 +1,9 @@
 require 'faraday'
 
 # @api private
-module Faraday
-  class Response
-    class RaiseError < Response::Middleware
+module Open311
+  module Response
+    class RaiseError < Faraday::Response::Middleware
       def on_complete(response) # rubocop:disable CyclomaticComplexity, MethodLength
         case response[:status].to_i
         when 400

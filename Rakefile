@@ -4,7 +4,7 @@ Bundler::GemHelper.install_tasks
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 
-task :test => :spec
+task test: :spec
 
 begin
   require 'rubocop/rake_task'
@@ -40,4 +40,4 @@ Yardstick::Rake::Verify.new do |verify|
   verify.threshold = 57.3
 end
 
-task :default => [:spec, :rubocop, :verify_measurements]
+task default: [:spec, :rubocop, :verify_measurements]

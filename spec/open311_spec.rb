@@ -25,14 +25,14 @@ describe Open311, '.service_list' do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      to_return(:body => fixture('services.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      with(query: {jurisdiction_id: 'dc.gov'}).
+      to_return(body: fixture('services.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource' do
     Open311.service_list
     expect(a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      with(query: {jurisdiction_id: 'dc.gov'})).
       to have_been_made
   end
 
@@ -50,14 +50,14 @@ describe Open311, '.service_definition' do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      to_return(:body => fixture('service_definition.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      with(query: {jurisdiction_id: 'dc.gov'}).
+      to_return(body: fixture('service_definition.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource' do
     Open311.service_definition('033')
     expect(a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      with(query: {jurisdiction_id: 'dc.gov'})).
       to have_been_made
   end
 
@@ -75,14 +75,14 @@ describe Open311, '.service_requests' do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      with(query: {jurisdiction_id: 'dc.gov'}).
+      to_return(body: fixture('service_requests.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource' do
     Open311.service_requests
     expect(a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      with(query: {jurisdiction_id: 'dc.gov'})).
       to have_been_made
   end
 
@@ -95,8 +95,8 @@ describe Open311, '.service_requests' do
   describe 'with no results' do
     before do
       stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
-        with(:query => {:jurisdiction_id => 'dc.gov'}).
-        to_return(:body => fixture('service_requests_empty.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+        with(query: {jurisdiction_id: 'dc.gov'}).
+        to_return(body: fixture('service_requests_empty.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
     end
 
     it 'returns an empty array' do
@@ -113,14 +113,14 @@ describe Open311, '.get_service_request' do
       config.jurisdiction = 'dc.gov'
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'}).
-      to_return(:body => fixture('get_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      with(query: {jurisdiction_id: 'dc.gov'}).
+      to_return(body: fixture('get_service_request.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource' do
     Open311.get_service_request(638_344)
     expect(a_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
-      with(:query => {:jurisdiction_id => 'dc.gov'})).
+      with(query: {jurisdiction_id: 'dc.gov'})).
       to have_been_made
   end
 
@@ -133,8 +133,8 @@ describe Open311, '.get_service_request' do
   describe 'when service_request_id is not valid' do
     before do
       stub_request(:get, 'http://blasius.ws:3003/open311/requests/not-an-id.xml').
-        with(:query => {:jurisdiction_id => 'dc.gov'}).
-        to_return(:body => fixture('get_service_request_not_found.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'}, :status => 404)
+        with(query: {jurisdiction_id: 'dc.gov'}).
+        to_return(body: fixture('get_service_request_not_found.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'}, status: 404)
     end
 
     it 'raises Open311::NotFound' do
@@ -152,23 +152,23 @@ describe Open311, '.post_service_request' do
     end
 
     stub_request(:post, 'blasius.ws:3003/open311/requests.xml').
-      to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      to_return(body: fixture('post_service_request.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should return the correct results' do
     service_request_params = {
-      :service_code   => '001',
-      :address_string => '1234 5th street',
-      :email          => 'smit222@sfgov.edu',
-      :device_id      => 'tt222111',
-      :account_id     => '12345',
-      :first_name     => 'john',
-      :last_name      => 'smith',
-      :phone          => '111111111',
-      :description    => 'A large sinkhole is destroying the street',
-      :media_url      => 'http://farm5.static.flickr.com/4057/4660699337_9aa4541ce1_o.jpg',
-      :lat            => '38.888486',
-      :long           => '-77.020179',
+      service_code: '001',
+      address_string: '1234 5th street',
+      email: 'smit222@sfgov.edu',
+      device_id: 'tt222111',
+      account_id: '12345',
+      first_name: 'john',
+      last_name: 'smith',
+      phone: '111111111',
+      description: 'A large sinkhole is destroying the street',
+      media_url: 'http://farm5.static.flickr.com/4057/4660699337_9aa4541ce1_o.jpg',
+      lat: '38.888486',
+      long: '-77.020179',
     }
     service_request_response = Open311.post_service_request(service_request_params)
     expect(service_request_response.service_request_id).to eq('293944')
@@ -183,14 +183,14 @@ describe Open311, '.request_id_from_token' do
       config.jurisdiction = 'sfgov.org'
     end
     stub_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'}).
-      to_return(:body => fixture('request_id_from_token.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      with(query: {jurisdiction_id: 'sfgov.org'}).
+      to_return(body: fixture('request_id_from_token.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource' do
     Open311.request_id_from_token(12_345)
     expect(a_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
-      with(:query => {:jurisdiction_id => 'sfgov.org'})).
+      with(query: {jurisdiction_id: 'sfgov.org'})).
       to have_been_made
   end
 
@@ -210,7 +210,7 @@ describe Open311, 'jurisdiction is an optional request parameter' do
     end
 
     stub_request(:get, 'http://311api.cityofchicago.org/open311/v2/requests/638344.xml').
-      to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      to_return(body: fixture('service_requests.xml'), headers: {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource without a jurisdiction parameter' do

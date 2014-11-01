@@ -7,7 +7,7 @@ gem 'yard'
 group :test do
   gem 'backports'
   gem 'rspec'
-  gem 'rubocop', '>= 0.27', :platforms => [:ruby_19, :ruby_20, :ruby_21]
+  gem 'rubocop', '>= 0.27'
   gem 'simplecov'
   gem 'webmock'
   gem 'yardstick'

@@ -59,7 +59,7 @@ module Open311
       # @see http://wiki.open311.org/GeoReport_v2#POST_Service_Request
       #   Open311.post_service_request
       def post_service_request(options = {})
-        merge_options!(options, :api_key => api_key)
+        merge_options!(options, api_key: api_key)
         response = post('requests', options)
         unpack_if_xml(response) do
           response['service_requests']['request']
@@ -99,7 +99,7 @@ module Open311
     private
 
       def merge_options!(options, additional_options = {})
-        options.merge!(:jurisdiction_id => jurisdiction) if jurisdiction
+        options.merge!(jurisdiction_id: jurisdiction) if jurisdiction
         options.merge!(additional_options)
       end
 

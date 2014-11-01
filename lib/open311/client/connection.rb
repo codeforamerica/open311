@@ -10,9 +10,9 @@ module Open311
       def options
         {
           # :headers => {'Accept' => "*/#{format}", 'User-Agent' => user_agent},
-          :proxy => proxy,
-          :ssl => {:verify => false},
-          :url => endpoint,
+          proxy: proxy,
+          ssl: {verify: false},
+          url: endpoint,
         }
       end
 

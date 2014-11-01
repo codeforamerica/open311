@@ -19,8 +19,8 @@ describe Faraday::Response do
           config.jurisdiction = 'dc.gov'
         end
         stub_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
-          with(:query => {:jurisdiction_id => 'dc.gov'}).
-          to_return(:status => status)
+          with(query: {jurisdiction_id: 'dc.gov'}).
+          to_return(status: status)
       end
 
       it "should raise #{exception.name} error" do

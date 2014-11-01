@@ -4,7 +4,7 @@ require 'faraday'
 module Open311
   module Response
     class RaiseError < Faraday::Response::Middleware
-      def on_complete(response) # rubocop:disable CyclomaticComplexity, MethodLength
+      def on_complete(response) # rubocop:disable AbcSize, CyclomaticComplexity, MethodLength
         case response[:status].to_i
         when 400
           fail Open311::BadRequest.new(error_message(response))

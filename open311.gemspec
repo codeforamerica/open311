@@ -7,12 +7,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'hashie', '~> 1.2'
   gem.add_dependency 'multi_json', '~> 1.0'
   gem.add_dependency 'multi_xml', '~> 0.4'
-  gem.add_development_dependency 'maruku'
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'simplecov'
-  gem.add_development_dependency 'webmock'
-  gem.add_development_dependency 'yard'
+  gem.add_development_dependency 'bundler', '~> 1.0'
   gem.authors = ["Dan Melton", "Erik Michaels-Ober"]
   gem.description = %q{A Ruby wrapper for the Open311 API v2.}
   gem.email = ['dan@codeforamerica.org', 'erik@codeforamerica.org']

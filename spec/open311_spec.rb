@@ -176,3 +176,22 @@ describe Open311, '.request_id_from_token' do
   end
 
 end
+
+
+describe Open311, "jurisdiction is an optional request parameter" do
+  before do
+    Open311.reset
+    Open311.configure do |config|
+      config.endpoint = 'http://311api.cityofchicago.org/open311/v2/'
+    end
+
+    stub_request(:get, 'http://311api.cityofchicago.org/open311/v2/requests/638344.xml').
+      to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+  end
+
+  it "should request the correct resource without a jurisdiction parameter" do
+    Open311.get_service_request(638344)
+    expect(a_request(:get, 'http://311api.cityofchicago.org/open311/v2/requests/638344.xml')).
+      to have_been_made
+  end
+end

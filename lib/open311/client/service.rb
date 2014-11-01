@@ -44,6 +44,8 @@ module Open311
         options.merge!(:jurisdiction_id => jurisdiction)
         response = get('requests', options)
         unpack_if_xml(response) do
+          return [] unless response.service_requests.respond_to? :request
+
           response.service_requests.request.map do |_request|
             response['service_requests']['request']
           end

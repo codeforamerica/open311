@@ -91,6 +91,19 @@ describe Open311, '.service_requests' do
     expect(services).to be_an Array
     expect(services.first.first.service_request_id).to eq('638344')
   end
+
+  describe "with no results" do
+    before do
+      stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
+        with(:query => {:jurisdiction_id => 'dc.gov'}).
+        to_return(:body => fixture('service_requests_empty.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+    end
+
+    it "returns an empty array" do
+      services = Open311.service_requests
+      expect(services).to eq []
+    end
+  end
 end
 
 describe Open311, '.get_service_request' do

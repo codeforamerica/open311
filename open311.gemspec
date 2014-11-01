@@ -1,5 +1,6 @@
-# encoding: utf-8
-require File.expand_path('../lib/open311/version', __FILE__)
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'open311/version'
 
 Gem::Specification.new do |gem|
   gem.add_dependency 'faraday', '~> 0.7'

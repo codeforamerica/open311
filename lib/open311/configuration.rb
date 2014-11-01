@@ -22,7 +22,7 @@ module Open311
     DEFAULT_FORMAT       = :xml
     DEFAULT_JURISDICTION = nil
     DEFAULT_PROXY        = nil
-    DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::VERSION}".freeze
+    DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::Version}".freeze
 
     attr_accessor(*VALID_OPTIONS_KEYS)
 

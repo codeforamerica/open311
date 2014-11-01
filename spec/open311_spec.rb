@@ -134,11 +134,7 @@ describe Open311, '.get_service_request' do
     before do
       stub_request(:get, 'http://blasius.ws:3003/open311/requests/not-an-id.xml').
         with(:query => {:jurisdiction_id => 'dc.gov'}).
-        to_return(
-          :body => fixture('get_service_request_not_found.xml'),
-          :headers => {'Content-Type' => 'text/xml; charset=utf-8'},
-          :status => 404,
-        )
+        to_return(:body => fixture('get_service_request_not_found.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'}, :status => 404)
     end
 
     it 'raises Open311::NotFound' do

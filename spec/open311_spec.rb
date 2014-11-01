@@ -5,20 +5,20 @@ describe Open311 do
     Open311.reset
   end
 
-  describe ".respond_to?" do
-    it "should return true if method exists" do
+  describe '.respond_to?' do
+    it 'should return true if method exists' do
       expect(Open311.respond_to?(:new, true)).to be true
     end
   end
 
-  describe ".new" do
-    it "should be a Open311::Client" do
+  describe '.new' do
+    it 'should be a Open311::Client' do
       expect(Open311.new).to be_a Open311::Client
     end
   end
 end
 
-describe Open311, ".service_list" do
+describe Open311, '.service_list' do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://api.dc.org/open311/v2_dev/'
@@ -29,21 +29,21 @@ describe Open311, ".service_list" do
       to_return(:body => fixture('services.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
-  it "should request the correct resource" do
+  it 'should request the correct resource' do
     Open311.service_list
     expect(a_request(:get, 'http://api.dc.org/open311/v2_dev/services.xml').
       with(:query => {:jurisdiction_id => 'dc.gov'})).
       to have_been_made
   end
 
-  it "should return the correct results" do
+  it 'should return the correct results' do
     services = Open311.service_list
     expect(services).to be_an Array
     expect(services.first.service_code).to eq('001')
   end
 end
 
-describe Open311, ".service_definition" do
+describe Open311, '.service_definition' do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
@@ -54,21 +54,21 @@ describe Open311, ".service_definition" do
       to_return(:body => fixture('service_definition.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
-  it "should request the correct resource" do
+  it 'should request the correct resource' do
     Open311.service_definition('033')
     expect(a_request(:get, 'http://blasius.ws:3003/open311/services/033.xml').
       with(:query => {:jurisdiction_id => 'dc.gov'})).
       to have_been_made
   end
 
-  it "should return the correct results" do
+  it 'should return the correct results' do
     service_def = Open311.service_definition('033')
     expect(service_def).to be_an Hash
-    expect(service_def.service_code).to eq("DMV66")
+    expect(service_def.service_code).to eq('DMV66')
   end
 end
 
-describe Open311, ".service_requests" do
+describe Open311, '.service_requests' do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
@@ -79,21 +79,21 @@ describe Open311, ".service_requests" do
       to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
-  it "should request the correct resource" do
+  it 'should request the correct resource' do
     Open311.service_requests
     expect(a_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
       with(:query => {:jurisdiction_id => 'dc.gov'})).
       to have_been_made
   end
 
-  it "should return the correct results" do
+  it 'should return the correct results' do
     services = Open311.service_requests
     expect(services).to be_an Array
     expect(services.first.first.service_request_id).to eq('638344')
   end
 end
 
-describe Open311, ".get_service_request" do
+describe Open311, '.get_service_request' do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
@@ -104,21 +104,21 @@ describe Open311, ".get_service_request" do
       to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
-  it "should request the correct resource" do
-    Open311.get_service_request(638344)
+  it 'should request the correct resource' do
+    Open311.get_service_request(638_344)
     expect(a_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
       with(:query => {:jurisdiction_id => 'dc.gov'})).
       to have_been_made
   end
 
-  it "should return the correct results" do
-    service_request = Open311.get_service_request(638344)
+  it 'should return the correct results' do
+    service_request = Open311.get_service_request(638_344)
     expect(service_request).to be_an Array
     expect(service_request.first.service_request_id).to eq('638344')
   end
 end
 
-describe Open311, ".post_service_request" do
+describe Open311, '.post_service_request' do
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://blasius.ws:3003/open311/'
@@ -130,7 +130,7 @@ describe Open311, ".post_service_request" do
       to_return(:body => fixture('post_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
-  it "should return the correct results" do
+  it 'should return the correct results' do
     service_request_params = {
       :service_code   => '001',
       :address_string => '1234 5th street',
@@ -150,7 +150,7 @@ describe Open311, ".post_service_request" do
   end
 end
 
-describe Open311, ".request_id_from_token" do
+describe Open311, '.request_id_from_token' do
 
   before do
     Open311.configure do |config|
@@ -162,15 +162,15 @@ describe Open311, ".request_id_from_token" do
       to_return(:body => fixture('request_id_from_token.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
-  it "should request the correct resource" do
-    Open311.request_id_from_token(12345)
+  it 'should request the correct resource' do
+    Open311.request_id_from_token(12_345)
     expect(a_request(:get, 'http://open311.sfgov.org/dev/v2/tokens/12345.xml').
       with(:query => {:jurisdiction_id => 'sfgov.org'})).
       to have_been_made
   end
 
-  it "should return the correct result" do
-    service_request = Open311.request_id_from_token(12345)
+  it 'should return the correct result' do
+    service_request = Open311.request_id_from_token(12_345)
     expect(service_request.service_request_id).to eq('638344')
     expect(service_request.token).to eq('12345')
   end

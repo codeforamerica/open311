@@ -8,7 +8,7 @@ module Open311
     # Alias for Open311::Client.new
     #
     # @return [Open311::Client]
-    def new(options={})
+    def new(options = {})
       Open311::Client.new(options)
     end
 
@@ -18,7 +18,7 @@ module Open311
       new.send(method, *args, &block)
     end
 
-    def respond_to?(method, include_private=false)
+    def respond_to?(method, include_private = false)
       new.respond_to?(method, include_private) || super(method, include_private)
     end
   end

@@ -6,6 +6,7 @@ gem 'yard'
 
 group :test do
   gem 'rspec'
+  gem 'rubocop', '>= 0.27', :platforms => [:ruby_19, :ruby_20, :ruby_21]
   gem 'simplecov'
   gem 'webmock'
 end

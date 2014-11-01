@@ -5,16 +5,18 @@ module Open311
   class Client
     # @private
     module Connection
-      private
+    private
 
-      def connection(raw=false)
-        options = {
+      def options
+        {
           # :headers => {'Accept' => "*/#{format}", 'User-Agent' => user_agent},
           :proxy => proxy,
           :ssl => {:verify => false},
-          :url => endpoint
+          :url => endpoint,
         }
+      end
 
+      def connection(raw = false)
         Faraday.new(options) do |connection|
           connection.use Faraday::Request::Multipart
           unless raw

@@ -24,7 +24,7 @@ module Open311
     DEFAULT_PROXY        = nil
     DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::VERSION}".freeze
 
-    attr_accessor *VALID_OPTIONS_KEYS
+    attr_accessor(*VALID_OPTIONS_KEYS)
 
     def self.extended(base)
       base.reset
@@ -35,7 +35,7 @@ module Open311
     end
 
     def options
-      VALID_OPTIONS_KEYS.inject({}){|o,k| o.merge!(k => send(k)) }
+      VALID_OPTIONS_KEYS.inject({}) { |a, e| a.merge!(e => send(e)) }
     end
 
     def reset

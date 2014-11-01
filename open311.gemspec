@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Dan Melton', 'Erik Michaels-Ober']
   spec.description = 'A Ruby wrapper for the Open311 API v2.'
   spec.email = ['dan@codeforamerica.org', 'erik@codeforamerica.org']
-  spec.files = %w(.yardopts LICENSE.md README.md open311.gemspec) + Dir['lib/**/*.rb']
+  spec.files = %w(.yardopts CONTRIBUTING.md LICENSE.md README.md open311.gemspec) + Dir['lib/**/*.rb']
   spec.homepage = 'https://github.com/codeforamerica/open311'
   spec.name = 'open311'
   spec.post_install_message = <<eos

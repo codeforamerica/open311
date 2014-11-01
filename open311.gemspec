@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.authors = ['Dan Melton', 'Erik Michaels-Ober']
   gem.description = 'A Ruby wrapper for the Open311 API v2.'
   gem.email = ['dan@codeforamerica.org', 'erik@codeforamerica.org']
-  gem.files = `git ls-files`.split("\n")
+  gem.files = %w(.yardopts LICENSE.md README.md open311.gemspec) + Dir['lib/**/*.rb']
   gem.homepage = 'https://github.com/codeforamerica/open311'
   gem.name = 'open311'
   gem.post_install_message = <<eos
@@ -21,6 +21,5 @@ eos
   gem.require_paths = ['lib']
   gem.required_rubygems_version = Gem::Requirement.new('>= 1.3.6')
   gem.summary = gem.description
-  gem.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.version = Open311::VERSION
 end

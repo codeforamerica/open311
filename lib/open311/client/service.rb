@@ -11,7 +11,7 @@ module Open311
       # @example Provide a list of acceptable 311 service request types and their associated service codes
       #   Open311.service_list
       def service_list(options={})
-        options.merge!(:jurisdiction_id => jurisdiction)
+        merge_options!(options)
         response = get('services', options)
         unpack_if_xml(response) do
           response['services']['service']
@@ -27,7 +27,7 @@ module Open311
       # @example define attributes associated with a service code, i.e. 033
       #   Open311.service_definition
       def service_definition(id, options={})
-        options.merge!(:jurisdiction_id => jurisdiction)
+        merge_options!(options)
         response = get("services/#{id}", options)
         unpack_if_xml(response) do
           response['service_definition']
@@ -41,7 +41,7 @@ module Open311
       # @see http://wiki.open311.org/GeoReport_v2#GET_Service_Requests
       #   Open311.service_requests
       def service_requests(options={})
-        options.merge!(:jurisdiction_id => jurisdiction)
+        merge_options!(options)
         response = get("requests", options)
         unpack_if_xml(response) do
           response.service_requests.request.map do |request|
@@ -57,7 +57,7 @@ module Open311
       # @see http://wiki.open311.org/GeoReport_v2#POST_Service_Request
       #   Open311.post_service_request
       def post_service_request(options={})
-        options.merge!(:jurisdiction_id => jurisdiction, :api_key => api_key)
+        merge_options!(options, :api_key => api_key)
         response = post("requests", options)
         unpack_if_xml(response) do
           response['service_requests']['request']
@@ -72,7 +72,7 @@ module Open311
       # @see http://wiki.open311.org/GeoReport_v2#GET_Service_Requests
       #   Open311.get_service_request
       def get_service_request(id, options={})
-        options.merge!(:jurisdiction_id => jurisdiction)
+        merge_options!(options)
         response = get("requests/#{id}", options)
         unpack_if_xml(response) do
           response['service_requests']['request']
@@ -87,14 +87,19 @@ module Open311
       # @see http://wiki.open311.org/GeoReport_v2#GET_request_id_from_a_token
       #   Open311.request_id
       def request_id_from_token(token_id, options = {})
-        options.merge!(:jurisdiction_id => jurisdiction)
+        merge_options!(options)
         response = get("tokens/#{token_id}", options)
         unpack_if_xml(response) do
           response['service_requests']['request']
         end
       end
 
-      private 
+      private
+
+      def merge_options!(options, additional_options = {})
+        options.merge!(:jurisdiction_id => jurisdiction) if jurisdiction
+        options.merge!(additional_options)
+      end
 
       def unpack_if_xml(response)
         if format.to_s.downcase == 'xml'

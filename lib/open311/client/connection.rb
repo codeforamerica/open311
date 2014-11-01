@@ -16,17 +16,13 @@ module Open311
         }
       end
 
-      def connection(raw = false)
+      def connection
         Faraday.new(options) do |connection|
           connection.use Faraday::Request::Multipart
-          unless raw
-            connection.use Faraday::Response::Mashify
-            case format.to_s.downcase
-            when 'json'
-              connection.use Faraday::Response::ParseJson
-            when 'xml'
-              connection.use Faraday::Response::ParseXml
-            end
+          connection.use Faraday::Response::Mashify
+          case format.to_s.downcase
+          when 'json' then connection.use Faraday::Response::ParseJson
+          when 'xml' then connection.use Faraday::Response::ParseXml
           end
           connection.use Open311::Response::RaiseError
           connection.adapter(adapter)

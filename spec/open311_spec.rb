@@ -7,7 +7,7 @@ describe Open311 do
 
   describe ".respond_to?" do
     it "should return true if method exists" do
-      Open311.respond_to?(:new, true).should be_true
+      Open311.respond_to?(:new, true).should be true
     end
   end
 

@@ -5,7 +5,7 @@ gem 'rake'
 gem 'yard'
 
 group :test do
-  gem 'rspec'
+  gem 'rspec', '~> 2.99'
   gem 'simplecov'
   gem 'webmock'
 end

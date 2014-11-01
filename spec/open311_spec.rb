@@ -91,6 +91,19 @@ describe Open311, '.service_requests' do
     expect(services).to be_an Array
     expect(services.first.first.service_request_id).to eq('638344')
   end
+
+  describe "with no results" do
+    before do
+      stub_request(:get, 'http://blasius.ws:3003/open311/requests.xml').
+        with(:query => {:jurisdiction_id => 'dc.gov'}).
+        to_return(:body => fixture('service_requests_empty.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+    end
+
+    it "returns an empty array" do
+      services = Open311.service_requests
+      expect(services).to eq []
+    end
+  end
 end
 
 describe Open311, '.get_service_request' do
@@ -101,7 +114,7 @@ describe Open311, '.get_service_request' do
     end
     stub_request(:get, 'http://blasius.ws:3003/open311/requests/638344.xml').
       with(:query => {:jurisdiction_id => 'dc.gov'}).
-      to_return(:body => fixture('service_requests.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
+      to_return(:body => fixture('get_service_request.xml'), :headers => {'Content-Type' => 'text/xml; charset=utf-8'})
   end
 
   it 'should request the correct resource' do
@@ -111,10 +124,26 @@ describe Open311, '.get_service_request' do
       to have_been_made
   end
 
-  it 'should return the correct results' do
-    service_request = Open311.get_service_request(638_344)
-    expect(service_request).to be_an Array
-    expect(service_request.first.service_request_id).to eq('638344')
+  it "should return the correct results" do
+    service_request = Open311.get_service_request(638344)
+    expect(service_request).to be_a Hashie::Mash
+    expect(service_request.service_request_id).to eq '638344'
+  end
+
+  describe "when service_request_id is not valid" do
+    before do
+      stub_request(:get, 'http://blasius.ws:3003/open311/requests/not-an-id.xml').
+        with(:query => {:jurisdiction_id => 'dc.gov'}).
+        to_return(
+          :body => fixture('get_service_request_not_found.xml'),
+          :headers => {'Content-Type' => 'text/xml; charset=utf-8'},
+          :status => 404
+        )
+    end
+
+    it "raises Open311::NotFound" do
+      expect { Open311.get_service_request('not-an-id') }.to raise_error Open311::NotFound
+    end
   end
 end
 

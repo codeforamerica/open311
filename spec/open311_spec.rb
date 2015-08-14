@@ -177,7 +177,6 @@ describe Open311, '.post_service_request' do
 end
 
 describe Open311, '.request_id_from_token' do
-
   before do
     Open311.configure do |config|
       config.endpoint     = 'http://open311.sfgov.org/dev/v2/'
@@ -200,7 +199,6 @@ describe Open311, '.request_id_from_token' do
     expect(service_request.service_request_id).to eq('638344')
     expect(service_request.token).to eq('12345')
   end
-
 end
 
 describe Open311, 'jurisdiction is an optional request parameter' do

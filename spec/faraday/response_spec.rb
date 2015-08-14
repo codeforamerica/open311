@@ -12,7 +12,6 @@ describe Faraday::Response do
     503 => Open311::ServiceUnavailable,
   }.each do |status, exception|
     context "when HTTP status is #{status}" do
-
       before do
         Open311.configure do |config|
           config.endpoint     = 'http://api.dc.org/open311/v2_dev/'

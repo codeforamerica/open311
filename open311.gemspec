@@ -21,7 +21,6 @@ https://github.com/codeforamerica/open311/wiki/apps
 eos
   spec.require_paths = ['lib']
   spec.required_ruby_version = '>= 1.9.3'
-  spec.required_rubygems_version = Gem::Requirement.new('>= 1.3.6')
   spec.summary = spec.description
   spec.version = Open311::Version
 end

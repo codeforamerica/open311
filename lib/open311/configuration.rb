@@ -10,6 +10,7 @@ module Open311
       :format,
       :jurisdiction,
       :proxy,
+      :headers,
       :user_agent].freeze
 
     VALID_FORMATS = [
@@ -22,6 +23,7 @@ module Open311
     DEFAULT_FORMAT       = :xml
     DEFAULT_JURISDICTION = nil
     DEFAULT_PROXY        = nil
+    DEFAULT_HEADERS      = nil
     DEFAULT_USER_AGENT   = "Open311 Ruby Gem #{Open311::Version}".freeze
 
     attr_accessor(*VALID_OPTIONS_KEYS)
@@ -46,6 +48,7 @@ module Open311
       self.jurisdiction = DEFAULT_JURISDICTION
       self.proxy        = DEFAULT_PROXY
       self.user_agent   = DEFAULT_USER_AGENT
+      self.headers      = DEFAULT_HEADERS
     end
   end
 end

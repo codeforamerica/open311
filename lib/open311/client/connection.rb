@@ -13,6 +13,7 @@ module Open311
           proxy: proxy,
           ssl: {verify: false},
           url: endpoint,
+          headers: headers,
         }
       end
 
